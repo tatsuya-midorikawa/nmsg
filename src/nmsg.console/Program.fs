@@ -1,0 +1,2 @@
+﻿open jp.midoliy.nmsg
+

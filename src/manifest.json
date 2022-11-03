@@ -1,0 +1,9 @@
+{
+  "name": "jp.midoliy.my_app",
+  "description": "My Native Msg App",
+  "path": "C:\\Program Files\\My App\\my_nmsg_app.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/"
+  ]
+}
