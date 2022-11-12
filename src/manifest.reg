@@ -1,3 +1,0 @@
-Windows Registry Editor Version 5.00
-[HKEY_LOCAL_MACHINE\Software\Microsoft\Edge\NativeMessagingHosts\jp.midoliy.my_app]
-@="C:\\Program Files\\My App\\manifest.json"

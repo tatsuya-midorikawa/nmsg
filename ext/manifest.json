@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Sample extension",
+  "version": "1.0",
+  "description": "Nmsg extension",
+  "content_scripts": [
+    {
+      "js": [
+        "js/content.js"
+      ],
+      "matches": [
+        "https://*.azurewebsites.net/*"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "permissions": [
+    "notifications",
+    "nativeMessaging"
+  ]
+}

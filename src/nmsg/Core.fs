@@ -9,7 +9,7 @@ open System.Text
 type public json = string
 
 [<CompiledName("Receive")>]
-let inline public receive () =
+let public receive () =
   // Native messaging protocol
   //  ---------------------------------------------------------------------
   // | JSON data size (32bit) |             UTF-8 encoded JSON             |
@@ -30,10 +30,10 @@ let inline public receive () =
     reader.Read(buffer, 0, buffer.Length) |> ignore
 
   // Convert to string value
-  string buffer
+  System.String buffer
     
 [<CompiledName("Send")>]
-let inline public send (msg: json) =
+let public send (msg: json) =
   // Native messaging protocol
   //  ---------------------------------------------------------------------
   // | JSON data size (32bit) |             UTF-8 encoded JSON             |

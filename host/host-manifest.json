@@ -1,0 +1,9 @@
+{
+  "name": "jp.midoliy.app",
+  "description": "Nmsg app",
+  "path": "C:\\tools\\nmsg\\nmsg.console.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/"
+  ]
+}
