@@ -7,21 +7,18 @@ open System.IO
 open System.Text
 
 type public json = string
-
-[<CompiledName("Receive")>]
-let public receive () =
+  
+[<CompiledName("ReceiveFrom")>]
+let public receive_from (stdin: Stream) =
   // Native messaging protocol
   //  ---------------------------------------------------------------------
   // | JSON data size (32bit) |             UTF-8 encoded JSON             |
   //  ---------------------------------------------------------------------
 
-  // Connect to standard input stream
-  use stdin = Console.OpenStandardInput()
-
   // Read JSON data size
   let size = Array.zeroCreate 4
   let read_size = stdin.Read(size, 0, 4)
-  let length = if read_size = 0 then 0 else BitConverter.ToInt32(size, 0);
+  let length = if read_size = 0 then 0 else BitConverter.ToInt32(size, 0)
 
   // Read UTF-8 encoded JSON
   let buffer = Array.zeroCreate length
@@ -31,17 +28,20 @@ let public receive () =
 
   // Convert to string value
   System.String buffer
-    
-[<CompiledName("Send")>]
-let public send (msg: json) =
+
+[<CompiledName("Receive")>]
+let public receive () =
+  // Connect to standard input stream
+  use stdin = Console.OpenStandardInput()
+  receive_from stdin
+  
+[<CompiledName("SendTo")>]
+let public send_to (stdout: Stream) (msg: json) =
   // Native messaging protocol
   //  ---------------------------------------------------------------------
   // | JSON data size (32bit) |             UTF-8 encoded JSON             |
   //  ---------------------------------------------------------------------
   
-  // Connect to standard output stream
-  use stdout = Console.OpenStandardOutput()
-
   // Get bytes from json string
   let bytes = Encoding.UTF8.GetBytes(msg)
 
@@ -54,3 +54,9 @@ let public send (msg: json) =
   // Write UTF-8 encoded JSON
   stdout.Write(bytes, 0, bytes.Length)
   stdout.Flush()
+
+[<CompiledName("Send")>]
+let public send (msg: json) =
+  // Connect to standard output stream
+  use stdout = Console.OpenStandardOutput()
+  msg |> send_to stdout
