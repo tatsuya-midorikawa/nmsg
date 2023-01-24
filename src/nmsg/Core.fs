@@ -7,7 +7,9 @@ open System.IO
 open System.Text
 
 type public json = string
-  
+
+let inline deserialize<'t> (json: json) = Json.JsonSerializer.Deserialize<'t>(json)
+
 [<CompiledName("ReceiveFrom")>]
 let public receive_from (stdin: Stream) =
   // Native messaging protocol
